@@ -94,19 +94,19 @@ def dijkstraPuzzle(g, i):
             
             if not w.isMarked():
                 k=w.getLabel() ;'''current neighbor'''
-                if(g.getEdge(minIndex,k).getWeight()!=None):
-                    edgeVal = g.getEdge(minIndex,k).getWeight()+D[minIndex]# add the previous edge value of D to the neighbor edge 
-                    if D[k]>edgeVal:
-                        ''' 
-                            k is the label of the vertex which is it's index in D
-                            Now it compares its existing value to the edge value of k
-                            Below the values of the arrrays are updated
-                        '''
-                        D[k]=round(edgeVal,3)
-                        V[k]=minIndex
-                else:
-                    D[k]=None
-                    V[k]=None
+                #if(g.getEdge(minIndex,k).getWeight()!=None):
+                edgeVal = g.getEdge(minIndex,k).getWeight()+D[minIndex]# add the previous edge value of D to the neighbor edge 
+                if D[k]>edgeVal:
+                    ''' 
+                        k is the label of the vertex which is it's index in D
+                        Now it compares its existing value to the edge value of k
+                        Below the values of the arrrays are updated
+                    '''
+                    D[k]=round(edgeVal,3)
+                    V[k]=minIndex
+                # else:
+                #     D[k]=None
+                #     V[k]=None
       
         # find the first unvisited vertex
         k=-1
@@ -128,7 +128,7 @@ def dijkstraPuzzle(g, i):
             edgeVal = g.getEdge(V[minIndex],minIndex).getWeight()
         g.getVertex(minIndex).setMark()
         ct+=1
-
+    print("dijkstra algorithm: ")
     print("D= ", D) #values of D and V arrays
     print("V= ", V)
     return V

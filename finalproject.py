@@ -86,64 +86,66 @@ def G(g,N):
         print("invalid G(N)")
     return centerPts
     
+def puzzleGraph(workArea, N):
+    points = G(g,N)
+    print(g)
+
+    '''input for testing dijkstra and confirming unsolvable graph'''
+    #val = input("Enter: ")
+    #print(val)
+    #if val == "yes":
+
+    V=dijkstra.dijkstraPuzzle(g,0)
+
+    currIndex = (N*N)-1
+    nextIndex=0
+    while(currIndex>0):
+        nextIndex = V[currIndex]
+        if(currIndex!=None and nextIndex!=None):
+
+            line = Line(points[currIndex],points[nextIndex])
+            line.setFill("blue")
+            line.setWidth(6)
+            line.draw(workArea)
+            currIndex = nextIndex
+        else:
+            text = Text(Point(400,500),"UNSOLVABLE")
+            text.setTextColor("Red")
+            text.setSize(30)
+            text.draw(workArea)
+            break
+        
+    #index is the vertex
+    #value of index is connecting vertex
+    '''Drawing the solution'''
+    # i = 0
+    # while i < len(V):
+    #     if V[i] != None:
+    #         line = Line(points[i],points[V[i]])
+    #         line.setFill("blue")
+    #         line.setWidth(6)
+    #         line.draw(workArea)
+    #         #print(V[i])
+    #     i+=1
+    '''steps to get the solution to draw'''
+    # use the last {index} or N^2 -1 to store point
+    # store point of the value of the last index (*store the value as the next index*)
+    # line for those two points
+    # use prev point
+    # * store point of the value of this index (*store the value as the next index*)
+    # until index is 0???
+
+
+
+    #print(cellCt)
+    while True:
+        try:
+            if workArea.getMouse().getX()!=None: #exit window by clicking on window with mouse
+                break
+        except GraphicsError: #click exit button and exit window without error
+            break
+    workArea.close() #exits the window after any of the aforementioned actions occur
+
 
 workArea = GraphWin("Puzzle Graph", 600,600)
-n = 7
-points = G(g,n)
-print(g)
-
-'''input for testing dijkstra and confirming unsolvable graph'''
-#val = input("Enter: ")
-#print(val)
-#if val == "yes":
-
-V=dijkstra.dijkstraPuzzle(g,0)
-
-currIndex = (n*n)-1
-nextIndex=0
-while(currIndex>0):
-    nextIndex = V[currIndex]
-    if(currIndex!=None and nextIndex!=None):
-
-        line = Line(points[currIndex],points[nextIndex])
-        line.setFill("blue")
-        line.setWidth(6)
-        line.draw(workArea)
-        currIndex = nextIndex
-    else:
-        text = Text(Point(400,500),"UNSOLVABLE")
-        text.setTextColor("Red")
-        text.setSize(30)
-        text.draw(workArea)
-        break
-    
-#index is the vertex
-#value of index is connecting vertex
-'''Drawing the solution'''
-# i = 0
-# while i < len(V):
-#     if V[i] != None:
-#         line = Line(points[i],points[V[i]])
-#         line.setFill("blue")
-#         line.setWidth(6)
-#         line.draw(workArea)
-#         #print(V[i])
-#     i+=1
-'''steps to get the solution to draw'''
-# use the last {index} or N^2 -1 to store point
-# store point of the value of the last index (*store the value as the next index*)
-# line for those two points
-# use prev point
-# * store point of the value of this index (*store the value as the next index*)
-# until index is 0???
-
-
-
-#print(cellCt)
-while True:
-    try:
-        if workArea.getMouse().getX()!=None: #exit window by clicking on window with mouse
-            break
-    except GraphicsError: #click exit button and exit window without error
-        break
-workArea.close() #exits the window after any of the aforementioned actions occur
+puzzleGraph(workArea,9)
