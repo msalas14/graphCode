@@ -1,0 +1,28 @@
+   
+
+    '''input for testing dijkstra and confirming unsolvable graph'''
+    val = input("Enter: ")
+    print(val)
+    if val == "yes":
+
+
+
+    index is the vertex
+    value of index is connecting vertex
+    '''Drawing the solution'''
+     i = 0
+     while i < len(V):
+         if V[i] != None:
+             line = Line(points[i],points[V[i]])
+             line.setFill("blue")
+             line.setWidth(6)
+             line.draw(workArea)
+             #print(V[i])
+         i+=1
+    '''steps to get the solution to draw'''
+     use the last {index} or N^2 -1 to store point
+     store point of the value of the last index (*store the value as the next index*)
+     line for those two points
+     use prev point
+     * store point of the value of this index (*store the value as the next index*)
+     until index is 0???
